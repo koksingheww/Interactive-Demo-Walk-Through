@@ -1,0 +1,25 @@
+.demo-container img {
+    width: 100%;
+}
+
+.circle {
+    border: solid 4px #d87070;
+    cursor: pointer;
+    position: absolute;
+}
+
+.demo-container {
+	position: relative;
+}
+
+.circle-label {
+    position: absolute;
+ 
+    text-align: center;
+    font-weight: 600;
+    background-color: #222;
+    color: #fff;
+    padding: 10px;
+    width: 135px;
+    border-radius: 5px;
+}
