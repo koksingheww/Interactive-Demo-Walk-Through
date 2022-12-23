@@ -10,7 +10,6 @@ jobs:
   notify-pr:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - name: Store ENV from AWS SSM
         uses: servicerocket/actions/common/get-aws-ssm-param@master
         with:
