@@ -1,0 +1,25 @@
+name: Alfred pull request notifier
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review, review_requested]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  notify-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Store ENV from AWS SSM
+        uses: servicerocket/actions/common/get-aws-ssm-param@master
+        with:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_GREEN_PROD }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_GREEN_PROD }}
+          AWS_REGION: 'us-west-2'
+          SSM_NAME: '/apps/tools-cs/alfred-workplace-token'
+      - name: Send PR notification
+        uses: servicerocket/actions/common/alfred-notify-pr@master
+        with:
+          wp-token: ${{ env.alfred-workplace-token }}
+          recipient-id: t_3041465492615524
+          github-token: ${{ secrets.GITHUB_TOKEN }}
